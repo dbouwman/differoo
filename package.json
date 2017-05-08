@@ -1,0 +1,15 @@
+{
+  "name": "differoo",
+  "version": "1.0.0",
+  "description": "Hacking at json diffing options",
+  "main": "index.html",
+  "scripts": {
+    "start": "lr-http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dave Bouwman",
+  "license": "MIT",
+  "dependencies": {
+    "fast-json-patch": "^1.1.10"
+  }
+}

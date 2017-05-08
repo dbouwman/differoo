@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Differooooo</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="./node_modules/fast-json-patch/dist/json-patch.min.js"></script>
+  <script src="./node_modules/fast-json-patch/dist/json-patch-duplex.min.js"></script>
+
+</head>
+<body class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Json Diff Hacking</h2>
+      <p><strong>Problem:</strong> Multiple users "collaborating" on items, but the backing API has no "merge" capability. It simply allows the last edit to win.</p>
+      <p>To address this, we are investigating the use of json diffing between the "current" graph and the server graph, and applying non-conflicting changes automatically.</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Original</h3>
+      <pre><code id="original"></code></pre>
+    </div>
+    <div class="col-sm-4">
+      <h3>Mine</h3>
+      <pre><code id="mine"></code></pre>
+    </div>
+    <div class="col-sm-4">
+      <h3>Yours</h3>
+      <pre><code id="yours"></code></pre>
+    </div>
+    <div class="col-sm-6">
+      <h3>Original-to-Mine Diff</h3>
+      <p>This is the series of changes updating my object from the original</p>
+      <pre>var patches = jsonpatch.compare(original, mine);</pre>
+      <pre><code id="originalToMine"></code></pre>
+    </div>
+    <div class="col-sm-6">
+      <h3>Yours-to-Mine Diff</h3>
+      <p>This is series of changes updating my object to yours.</p>
+      <pre>var patches = jsonpatch.compare(mine, yours);</pre>
+      <pre><code id="mineToYours"></code></pre>
+    </div>
+    <div class="col-sm-12">
+      <h3>Checking for collisions</h3>
+      <p>If we get an update from the server, we need to know what patches we can apply.</p>
+    </div>
+    <div class="col-sm-6">
+      <h3>Output</h3>
+      <p>Applying the patch to mine, yeilds yours</p>
+      <pre>var patches = jsonpatch.apply(mine, patches);</pre>
+      <pre><code id="output"></code></pre>
+    </div>
+    <div class="col-sm-6">
+      <h3>Collisions</h3>
+      <pre><code id="collisions"></code></pre>
+    </div>
+  </div>
+
+
+  <script src="./js/main.js"></script>
+
+</body>
+</html>
